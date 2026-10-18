@@ -27,6 +27,18 @@ const {
   STATIONARY_DETECTION_SENSITIVITY_DP,
   validateStationaryDetectionSensitivity,
 } = require('./stationary-detection-sensitivity');
+const {
+  FAR_DETECTION_DP,
+  validateFarDetection,
+} = require('./far-detection');
+const {
+  PRESENCE_TIME_DP,
+  validatePresenceTime,
+} = require('./presence-time');
+const {
+  INDICATOR_DP,
+  validateIndicator,
+} = require('./indicator');
 
 Cluster.addCluster(TuyaSpecificCluster);
 
@@ -225,6 +237,36 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
         value,
       });
       await this.writeData32(STATIONARY_DETECTION_SENSITIVITY_DP, value);
+    }
+
+    if (changedKeys.includes('far_detection')) {
+      const value = validateFarDetection(newSettings.far_detection);
+      this.log('Sending Tuya DP:', {
+        dp: FAR_DETECTION_DP,
+        datatype: 2,
+        value,
+      });
+      await this.writeData32(FAR_DETECTION_DP, value);
+    }
+
+    if (changedKeys.includes('presence_time')) {
+      const value = validatePresenceTime(newSettings.presence_time);
+      this.log('Sending Tuya DP:', {
+        dp: PRESENCE_TIME_DP,
+        datatype: 2,
+        value,
+      });
+      await this.writeData32(PRESENCE_TIME_DP, value);
+    }
+
+    if (changedKeys.includes('indicator')) {
+      const value = validateIndicator(newSettings.indicator);
+      this.log('Sending Tuya DP:', {
+        dp: INDICATOR_DP,
+        datatype: 1,
+        value,
+      });
+      await this.writeBool(INDICATOR_DP, value);
     }
   }
 

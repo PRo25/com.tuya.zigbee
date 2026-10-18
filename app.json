@@ -5235,6 +5235,16 @@
         "human_motion_state",
         "human_motion_level"
       ],
+      "capabilitiesOptions": {
+        "presence_state": {
+          "insightsTitleTrue": {
+            "en": "Human Presence detected"
+          },
+          "insightsTitleFalse": {
+            "en": "Human Presence no longer detected"
+          }
+        }
+      },
       "energy": {
         "batteries": [
           "AAA",
@@ -5278,79 +5288,124 @@
       },
       "settings": [
         {
-          "id": "batteryThreshold",
-          "type": "number",
+          "id": "sensor_settings",
+          "type": "group",
           "label": {
-            "en": "Low battery alarm threshold (%)"
+            "en": "Sensor Settings"
           },
-          "hint": {
-            "en": "Set the battery level below which the low battery alarm is triggered."
-          },
-          "value": 20,
-          "attr": {
-            "step": 1,
-            "min": 10,
-            "max": 90
-          }
-        },
-        {
-          "id": "motion_detection_mode",
-          "type": "dropdown",
-          "label": {
-            "en": "Motion detection mode"
-          },
-          "value": "pir_and_radar",
-          "hint": {
-            "en": "Sends DP 122 as a Tuya enum: 0 = PIR and radar, 1 = PIR or radar, 2 = radar only. The numeric order is based on the SmartLife option order."
-          },
-          "values": [
+          "children": [
             {
-              "id": "pir_and_radar",
+              "id": "batteryThreshold",
+              "type": "number",
               "label": {
-                "en": "PIR and radar (both)"
+                "en": "Low battery alarm threshold (%)"
+              },
+              "hint": {
+                "en": "Set the battery level below which the low battery alarm is triggered."
+              },
+              "value": 20,
+              "attr": {
+                "step": 1,
+                "min": 10,
+                "max": 90
               }
             },
             {
-              "id": "pir_or_radar",
+              "id": "motion_detection_mode",
+              "type": "dropdown",
               "label": {
-                "en": "PIR or radar (either)"
+                "en": "Motion detection mode"
+              },
+              "value": "pir_and_radar",
+              "hint": {
+                "en": "Sends DP 122 as a Tuya enum: 0 = PIR and radar, 1 = PIR or radar, 2 = radar only. The numeric order is based on the SmartLife option order."
+              },
+              "values": [
+                {
+                  "id": "pir_and_radar",
+                  "label": {
+                    "en": "PIR and radar (both)"
+                  }
+                },
+                {
+                  "id": "pir_or_radar",
+                  "label": {
+                    "en": "PIR or radar (either)"
+                  }
+                },
+                {
+                  "id": "only_radar",
+                  "label": {
+                    "en": "Radar only"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "motion_detection_sen",
+              "type": "number",
+              "label": {
+                "en": "Motion detection sensitivity"
+              },
+              "value": 5,
+              "min": 0,
+              "max": 10,
+              "step": 1,
+              "units": {
+                "en": "x"
               }
             },
             {
-              "id": "only_radar",
+              "id": "sensitivity",
+              "type": "number",
               "label": {
-                "en": "Radar only"
+                "en": "Stationary detection sensitivity"
+              },
+              "value": 5,
+              "min": 0,
+              "max": 10,
+              "step": 1,
+              "units": {
+                "en": "x"
               }
+            },
+            {
+              "id": "far_detection",
+              "type": "number",
+              "label": {
+                "en": "MW radar detection distance"
+              },
+              "value": 1000,
+              "min": 0,
+              "max": 1000,
+              "step": 1,
+              "units": {
+                "en": "cm"
+              }
+            },
+            {
+              "id": "presence_time",
+              "type": "number",
+              "label": {
+                "en": "Presence keep time"
+              },
+              "value": 10,
+              "min": 10,
+              "max": 28800,
+              "step": 1,
+              "units": {
+                "en": "s"
+              }
+            },
+            {
+              "id": "indicator",
+              "type": "checkbox",
+              "label": {
+                "en": "Indicator"
+              },
+              "value": true
             }
           ]
-        },
-        {
-          "id": "motion_detection_sen",
-          "type": "number",
-          "label": {
-            "en": "Motion detection sensitivity"
-          },
-          "value": 5,
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "units": {
-            "en": "x"
-          }
-        },
-        {
-          "id": "sensitivity",
-          "type": "number",
-          "label": {
-            "en": "Stationary detection sensitivity"
-          },
-          "value": 5,
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "units": {
-            "en": "x"
-          }
         }
       ]
     },
@@ -16023,7 +16078,8 @@
       "chartType": "spline",
       "getable": true,
       "setable": false,
-      "uiComponent": "sensor"
+      "uiComponent": "sensor",
+      "icon": "/drivers/motion_radar_sensor/assets/motion-state.svg"
     },
     "human_motion_state": {
       "type": "enum",
@@ -16052,7 +16108,8 @@
       ],
       "getable": true,
       "setable": false,
-      "uiComponent": "sensor"
+      "uiComponent": "sensor",
+      "icon": "/drivers/motion_radar_sensor/assets/motion-state.svg"
     },
     "lidl_xmas_mode": {
       "title": {
@@ -16190,6 +16247,8 @@
         "en": "Human Presence"
       },
       "uiComponent": "sensor",
+      "insights": true,
+      "icon": "/drivers/motion_radar_sensor/assets/human-presence.svg",
       "getable": true,
       "setable": false
     },

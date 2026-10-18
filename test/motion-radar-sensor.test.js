@@ -25,6 +25,18 @@ const {
   STATIONARY_DETECTION_SENSITIVITY_DP,
   validateStationaryDetectionSensitivity,
 } = require('../drivers/motion_radar_sensor/stationary-detection-sensitivity');
+const {
+  FAR_DETECTION_DP,
+  validateFarDetection,
+} = require('../drivers/motion_radar_sensor/far-detection');
+const {
+  PRESENCE_TIME_DP,
+  validatePresenceTime,
+} = require('../drivers/motion_radar_sensor/presence-time');
+const {
+  INDICATOR_DP,
+  validateIndicator,
+} = require('../drivers/motion_radar_sensor/indicator');
 
 test('obsolete device capabilities are those not declared by the driver', () => {
   assert.deepEqual(
@@ -132,6 +144,51 @@ test('stationary detection sensitivity rejects values outside the integer range 
     assert.throws(
       () => validateStationaryDetectionSensitivity(value),
       /Stationary detection sensitivity must be an integer between 0 and 10/,
+    );
+  }
+});
+
+test('far detection accepts integer DP 4 distances from 0 to 1000 cm', () => {
+  assert.equal(FAR_DETECTION_DP, 4);
+  assert.equal(validateFarDetection(0), 0);
+  assert.equal(validateFarDetection(1000), 1000);
+});
+
+test('far detection rejects values outside the integer range 0 to 1000 cm', () => {
+  for (const value of [-1, 1001, 1.5, Number.NaN]) {
+    assert.throws(
+      () => validateFarDetection(value),
+      /MW radar detection distance must be an integer between 0 and 1000 cm/,
+    );
+  }
+});
+
+test('presence keep time accepts integer DP 102 values from 10 to 28800 seconds', () => {
+  assert.equal(PRESENCE_TIME_DP, 102);
+  assert.equal(validatePresenceTime(10), 10);
+  assert.equal(validatePresenceTime(28800), 28800);
+});
+
+test('presence keep time rejects values outside the integer range 10 to 28800 seconds', () => {
+  for (const value of [9, 28801, 1.5, Number.NaN]) {
+    assert.throws(
+      () => validatePresenceTime(value),
+      /Presence keep time must be an integer between 10 and 28800 seconds/,
+    );
+  }
+});
+
+test('indicator accepts boolean values for Tuya DP 107', () => {
+  assert.equal(INDICATOR_DP, 107);
+  assert.equal(validateIndicator(true), true);
+  assert.equal(validateIndicator(false), false);
+});
+
+test('indicator rejects non-boolean values', () => {
+  for (const value of [0, 1, 'true', null]) {
+    assert.throws(
+      () => validateIndicator(value),
+      /Indicator must be a boolean/,
     );
   }
 });

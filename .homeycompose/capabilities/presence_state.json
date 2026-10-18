@@ -4,6 +4,8 @@
     "en": "Human Presence"
   },
   "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/drivers/motion_radar_sensor/assets/human-presence.svg",
   "getable": true,
   "setable": false
 }

@@ -19,6 +19,16 @@
     "human_motion_state",
     "human_motion_level"
   ],
+  "capabilitiesOptions": {
+    "presence_state": {
+      "insightsTitleTrue": {
+        "en": "Human Presence detected"
+      },
+      "insightsTitleFalse": {
+        "en": "Human Presence no longer detected"
+      }
+    }
+  },
   "energy": {
     "batteries": [
       "AAA",

@@ -25,5 +25,6 @@
   ],
   "getable": true,
   "setable": false,
-  "uiComponent": "sensor"
+  "uiComponent": "sensor",
+  "icon": "/drivers/motion_radar_sensor/assets/motion-state.svg"
 }
