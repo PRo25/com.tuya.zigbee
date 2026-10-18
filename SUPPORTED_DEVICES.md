@@ -32,7 +32,7 @@ This section is generated from the Homey manifest. It is the easiest place to ch
 | 2 Gang Dimmer Module (`dimmer_2_gang_tuya`) | `TS0601` | `_TZE200_e3oitdyu`<br>`_TZE200_gwkapsoq`<br>`_TZE204_bxoo2swd`<br>`_TZE204_zenj4lxv` |
 | 2 Gang Dimmer Module (MOES) (`dimmer_2_gang_tuya_fjjbhx9d`) | `TS0601` | `_TZE200_fjjbhx9d` |
 | 2 Gang Switch Module (`switch_2_gang`) | `TS0002`<br>`TS0003`<br>`TS0012`<br>`TS0013`<br>`TS011F`<br>`ZG-305Z` | `HOBEIAN`<br>`_TYZB01_digziiav`<br>`_TYZB01_zsl6z0pw`<br>`_TZ3000_4js9lo5d`<br>`_TZ3000_7ed9cqgi`<br>`_TZ3000_bvrlqyj7`<br>`_TZ3000_fisb3ajo`<br>`_TZ3000_jcfje0kb`<br>`_TZ3000_jl7qyupf`<br>`_TZ3000_llfaquvp`<br>`_TZ3000_lmlsduws`<br>`_TZ3000_pmz6mjyu`<br>`_TZ3000_qaa59zqd`<br>`_TZ3000_qcgw8qfa`<br>`_TZ3000_ruxexjfz` |
-| 2 Gang Switch Module with metering (`switch_2_gang_metering`) | `TS0002`<br>`TS011F` | `_TZ3000_zmy4lslw` |
+| 2 Gang Switch Module with metering (`switch_2_gang_metering`) | `TS0002`<br>`TS011F` | `_TZ3000_huvxrx4i`<br>`_TZ3000_zmy4lslw` |
 | 2 Gang Wall Remote (`wall_remote_2_gang`) | `TS0042` | `_TYZB02_keyjhapk`<br>`_TZ3000_5e235jpa`<br>`_TZ3000_dfgbtub0`<br>`_TZ3000_fkvaniuu`<br>`_TZ3000_h1c2eamp`<br>`_TZ3000_oikiyf3b`<br>`_TZ3000_owgcnkrh`<br>`_TZ3000_tzvbimpq`<br>`_TZ3400_keyjhapk` |
 | 2 Gang Wall Switch (`wall_switch_2_gang`) | `TS0002`<br>`TS0012`<br>`TS0042` | `TUYATEC-O6SNCwd6`<br>`TUYATEC-nzrrvgco`<br>`_TYZB01_2athzhfr`<br>`_TYZB01_6g8b7at8`<br>`_TYZB01_6sadkhcy`<br>`_TYZB01_mtlhqn48`<br>`_TYZB01_vzrytttn`<br>`_TZ3000_18ejxno0`<br>`_TZ3000_56bdyj21`<br>`_TZ3000_5vujyute`<br>`_TZ3000_atp7xmd9`<br>`_TZ3000_e98krvvk`<br>`_TZ3000_fvh3pjaz`<br>`_TZ3000_lupfd8zu`<br>`_TZ3000_mklgayek`<br>`_TZ3000_mrqea2uu`<br>`_TZ3000_nta0gb8h`<br>`_TZ3000_p8alo7qa`<br>`_TZ3000_qn8qvk9y`<br>`_TZ3000_s8r1qoyq`<br>`_TZ3000_svoqrno4`<br>`_TZ3000_xftvfolu`<br>`_TZ3000_yhagrqmd` |
 | 2 Gang Wall Switch (`wall_switch_2_gang_tuya`) | `TS0601` | `_TZE200_g1ib5ldv` |
@@ -78,6 +78,7 @@ This section is generated from the Homey manifest. It is the easiest place to ch
 | LCD Temperature, Humidity and Luminance Sensor (`lcdtemphumidluxsensor`) | `TS0201`<br>`TS0222` | `_TYZB01_ftdkanlj`<br>`_TYZB01_kvwjujy9`<br>`_TZ3000_qaaysllp`<br>`_TZ3210_huzkzqyk` |
 | Livarno Lux Atmosphere Floor LED Light (`rgb_floor_led_light`) | `TS0502A` | `_TZ3000_8uaoilu9` |
 | Livarno Lux Smart LED Wall Light (`rgb_wall_led_light`) | `TS0505A` | `_TZ3000_5bsf8vaj`<br>`_TZ3000_utagpnzs` |
+| Motion & Presence Sensor (`motion_radar_sensor`) | `TS0601` | `_TZE200_kb5noeto` |
 | Motion Sensor (`motion_sensor`) | `RH3040` | `TUYATEC-bd5faf9p`<br>`TUYATEC-zw6hxafz` |
 | Motion Sensor (`motion_sensor_2`) | `TS0601` | `_TZE200_1ibpyhdc`<br>`_TZE200_3towulqd`<br>`_TZE200_bh3n6gk8`<br>`_TZE200_ttcovulf` |
 | Motion Sensor (`motion_sensor_3`) | `TS0601` | `_TZE200_mgxy2d9f` |
@@ -286,6 +287,7 @@ and many more..
     _TZE200_bh3n6gk8 / TS0601
     _TZE200_1ibpyhdc / TS0601
     _TZE200_ttcovulf / TS0601
+    _TZE200_kb5noeto / TS0601
 
 - Door/Windows Sensor
     TUYATEC-g3gl6cgy / RH3001

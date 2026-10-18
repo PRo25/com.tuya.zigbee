@@ -1,0 +1,18 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Motion Level"
+  },
+  "desc": {
+    "en": "Human motion state represented as none (0), small move (0.5), or large move (1)."
+  },
+  "min": 0,
+  "max": 1,
+  "step": 0.5,
+  "decimals": 1,
+  "insights": true,
+  "chartType": "spline",
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}

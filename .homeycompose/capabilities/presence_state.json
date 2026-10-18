@@ -1,0 +1,9 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Human Presence"
+  },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": false
+}

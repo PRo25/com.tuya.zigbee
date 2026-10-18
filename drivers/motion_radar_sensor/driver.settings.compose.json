@@ -1,0 +1,77 @@
+[
+  {
+    "id": "batteryThreshold",
+    "type": "number",
+    "label": {
+      "en": "Low battery alarm threshold (%)"
+    },
+    "hint": {
+      "en": "Set the battery level below which the low battery alarm is triggered."
+    },
+    "value": 20,
+    "attr": {
+      "step": 1,
+      "min": 10,
+      "max": 90
+    }
+  },
+  {
+    "id": "motion_detection_mode",
+    "type": "dropdown",
+    "label": {
+      "en": "Motion detection mode"
+    },
+    "value": "pir_and_radar",
+    "hint": {
+      "en": "Sends DP 122 as a Tuya enum: 0 = PIR and radar, 1 = PIR or radar, 2 = radar only. The numeric order is based on the SmartLife option order."
+    },
+    "values": [
+      {
+        "id": "pir_and_radar",
+        "label": {
+          "en": "PIR and radar (both)"
+        }
+      },
+      {
+        "id": "pir_or_radar",
+        "label": {
+          "en": "PIR or radar (either)"
+        }
+      },
+      {
+        "id": "only_radar",
+        "label": {
+          "en": "Radar only"
+        }
+      }
+    ]
+  },
+  {
+    "id": "motion_detection_sen",
+    "type": "number",
+    "label": {
+      "en": "Motion detection sensitivity"
+    },
+    "value": 5,
+    "min": 0,
+    "max": 10,
+    "step": 1,
+    "units": {
+      "en": "x"
+    }
+  },
+  {
+    "id": "sensitivity",
+    "type": "number",
+    "label": {
+      "en": "Stationary detection sensitivity"
+    },
+    "value": 5,
+    "min": 0,
+    "max": 10,
+    "step": 1,
+    "units": {
+      "en": "x"
+    }
+  }
+]

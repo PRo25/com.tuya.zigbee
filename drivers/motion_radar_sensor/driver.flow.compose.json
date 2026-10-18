@@ -1,0 +1,71 @@
+{
+  "triggers": [
+    {
+      "id": "human_presence_detected",
+      "title": {
+        "en": "Human presence detected"
+      },
+      "titleFormatted": {
+        "en": "Human presence detected"
+      },
+      "hint": {
+        "en": "Triggered when the sensor detects human presence."
+      },
+      "args": []
+    },
+    {
+      "id": "human_presence_no_longer_detected",
+      "title": {
+        "en": "Human presence no longer detected"
+      },
+      "titleFormatted": {
+        "en": "Human presence is no longer detected"
+      },
+      "hint": {
+        "en": "Triggered when the sensor stops detecting human presence."
+      },
+      "args": []
+    },
+    {
+      "id": "human_large_move_detected",
+      "title": {
+        "en": "Large move detected"
+      },
+      "titleFormatted": {
+        "en": "Large move detected"
+      },
+      "hint": {
+        "en": "Triggered when the sensor detects a large human movement."
+      },
+      "args": []
+    },
+    {
+      "id": "human_small_move_detected",
+      "title": {
+        "en": "Small move detected"
+      },
+      "titleFormatted": {
+        "en": "Small move detected"
+      },
+      "hint": {
+        "en": "Triggered when the sensor detects a small human movement."
+      },
+      "args": []
+    },
+    {
+      "id": "human_no_motion_detected",
+      "title": {
+        "en": "No motion detected"
+      },
+      "titleFormatted": {
+        "en": "No motion detected"
+      },
+      "hint": {
+        "en": "Triggered when the sensor reports no human motion."
+      },
+      "args": []
+    }
+  ],
+  "conditions": [],
+  "actions": []
+}

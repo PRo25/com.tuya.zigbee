@@ -1,0 +1,29 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Motion State"
+  },
+  "values": [
+    {
+      "id": "none",
+      "title": {
+        "en": "None"
+      }
+    },
+    {
+      "id": "large_move",
+      "title": {
+        "en": "Large move"
+      }
+    },
+    {
+      "id": "small_move",
+      "title": {
+        "en": "Small move"
+      }
+    }
+  ],
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}
