@@ -15,6 +15,7 @@ This section is generated from the Homey manifest. It is the easiest place to ch
 | --- | --- | --- |
 | 1 button Smart Remote Controller (`smart_remote_1_button`) | `TS004F` | `_TZ3000_kjfzuycl`<br>`_TZ3000_rco1yzb1`<br>`_TZ3000_yirp2pgd` |
 | 1 button Smart Remote Controller (`smart_remote_1_button_2`) | `TS004F` | `_TZ3000_ja5osu5g` |
+| 1 button Smart Remote Controller (`smart_remote_1_button_3`) | `TS004F` | `_TZ3000_kaflzta4` |
 | 1 Channel Relay Board (`relay_board_1_channel`) | `TS0001` | `_TZ3000_g8n1n7lg` |
 | 1 Gang Dimmer Module (`dimmer_1_gang`) | `TS0052`<br>`TS110E`<br>`TS110F` | `_TYZB01_qezuin6k`<br>`_TZ3000_ktuoyvt5`<br>`_TZ3000_mgusv51k`<br>`_TZ3210_k1msuvg6`<br>`_TZ3210_ngqk6jia`<br>`_TZ3210_weaqkhab`<br>`_TZ3210_zxbtub8r` |
 | 1 Gang Dimmer Module (`dimmer_1_gang_2`) | `TS110E` | `_TZ3210_ngqk6jia` |

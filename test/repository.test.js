@@ -750,6 +750,7 @@ test('smart and handheld remote Flow triggers are driver-scoped', () => {
   const drivers = [
     ['smart_button_switch', 'smart_button_switch_buttons'],
     ['smart_remote_1_button_2', 'smart_remote_1_button_2'],
+    ['smart_remote_1_button_3', 'smart_remote_1_button_3'],
     ['smart_remote_4_buttons', 'smart_remote_4_buttons'],
     ['handheld_remote_4_buttons', 'handheld_remote_4_buttons'],
   ];
