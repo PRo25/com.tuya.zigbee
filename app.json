@@ -14859,6 +14859,71 @@
       ]
     },
     {
+      "id": "wall_switch_1_gang_touch",
+      "name": {
+        "en": "1 Gang Touch Wall Switch"
+      },
+      "class": "socket",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "large": "/drivers/wall_switch_1_gang_touch/assets/images/large.png",
+        "small": "/drivers/wall_switch_1_gang_touch/assets/images/small.png"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 0,
+          "usageOff": 0
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_9akmi5ly"
+        ],
+        "productId": [
+          "TS0001"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              61184
+            ],
+            "bindings": [
+              6
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/wall_switch_1_gang_touch/assets/icon.svg",
+          "instruction": {
+            "en": "Press the button for 7 seconds (until LED starts blinking)."
+          }
+        }
+      },
+      "settings": [
+        {
+          "id": "switch_backlight",
+          "type": "checkbox",
+          "label": {
+            "en": "Switch backlight"
+          },
+          "value": false
+        }
+      ]
+    },
+    {
       "id": "wall_switch_1_gang_tuya",
       "name": {
         "en": "1 Gang Wall Switch"

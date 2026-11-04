@@ -1,0 +1,10 @@
+[
+  {
+    "id": "switch_backlight",
+    "type": "checkbox",
+    "label": {
+      "en": "Switch backlight"
+    },
+    "value": false
+  }
+]
