@@ -2,26 +2,31 @@
 
 const { CLUSTER, Cluster } = require('zigbee-clusters');
 const TuyaSpecificCluster = require('../../lib/TuyaSpecificCluster');
+const TuyaOnOffCluster = require('../../lib/TuyaOnOffCluster');
 const TuyaSpecificClusterDevice = require('../../lib/TuyaSpecificClusterDevice');
-const { getDataValue } = require('../../lib/TuyaHelpers');
-const { V2_MULTI_SWITCH_DATA_POINTS } = require('../../lib/TuyaDataPoints');
 
 Cluster.addCluster(TuyaSpecificCluster);
+Cluster.addCluster(TuyaOnOffCluster);
 
 class WallSwitch1GangTouch extends TuyaSpecificClusterDevice {
   async onNodeInit({ zclNode }) {
     this.registerCapability('onoff', CLUSTER.ON_OFF);
 
-    const handleDatapoint = async data => {
-      try {
-        await this.processDatapoint(data);
-      } catch (error) {
-        this.error('Failed to process touch switch Tuya datapoint', error);
-      }
-    };
+    const onOffCluster = zclNode.endpoints[1].clusters.onOff;
+    onOffCluster.on('attr.tuyaBacklightSwitch', value => {
+      this.updateBacklightSetting(value).catch(error => {
+        this.error('Failed to update touch switch backlight setting from attribute 0x5000', error);
+      });
+    });
 
-    zclNode.endpoints[1].clusters.tuya.on('reporting', handleDatapoint);
-    zclNode.endpoints[1].clusters.tuya.on('response', handleDatapoint);
+    try {
+      const { tuyaBacklightSwitch } = await onOffCluster.readAttributes(['tuyaBacklightSwitch']);
+      if (tuyaBacklightSwitch !== undefined) {
+        await this.updateBacklightSetting(tuyaBacklightSwitch);
+      }
+    } catch (error) {
+      this.error('Failed to read touch switch backlight attribute 0x5000', error);
+    }
 
     await zclNode.endpoints[1].clusters.basic
       .readAttributes(['manufacturerName', 'zclVersion', 'appVersion', 'modelId', 'powerSource', 'attributeReportingStatus'])
@@ -30,33 +35,30 @@ class WallSwitch1GangTouch extends TuyaSpecificClusterDevice {
       });
   }
 
-  async processDatapoint(data) {
-    if (data.dp !== V2_MULTI_SWITCH_DATA_POINTS.backlightSwitch) {
-      this.log('Ignoring unrelated touch switch datapoint:', data.dp);
+  async updateBacklightSetting(value) {
+    if (value !== 0 && value !== 1 && value !== 'Off' && value !== 'On') {
+      this.error('Ignoring invalid touch switch backlight attribute 0x5000 value:', value);
       return;
     }
 
-    const value = getDataValue(data);
-    if (typeof value !== 'boolean') {
-      this.error('Ignoring non-boolean touch switch backlight datapoint:', data);
-      return;
-    }
-
-    await this.setSettings({ switch_backlight: value });
+    await this.setSettings({ switch_backlight: value === 1 || value === 'On' });
   }
 
   async onSettings({ newSettings, changedKeys }) {
     if (changedKeys.includes('switch_backlight')) {
-      await this.writeBool(
-        V2_MULTI_SWITCH_DATA_POINTS.backlightSwitch,
-        newSettings.switch_backlight
-      );
+      const value = newSettings.switch_backlight ? 1 : 0;
+
+      try {
+        await this.zclNode.endpoints[1].clusters.onOff.writeAttributes({
+          tuyaBacklightSwitch: value
+        });
+      } catch (error) {
+        this.error('Failed to write touch switch backlight attribute 0x5000:', { value }, error);
+        throw error;
+      }
     }
   }
 
-  onDeleted() {
-    this.log('1 Gang Touch Wall Switch removed');
-  }
 }
 
 module.exports = WallSwitch1GangTouch;

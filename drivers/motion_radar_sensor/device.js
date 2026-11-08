@@ -48,7 +48,6 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     const declaredCapabilities = this.driver.manifest.capabilities;
     const obsoleteCapabilities = getObsoleteCapabilities(this.getCapabilities(), declaredCapabilities);
     for (const capabilityId of obsoleteCapabilities) {
-      this.log(`Removing obsolete capability: ${capabilityId}`);
       await this.removeCapability(capabilityId);
     }
 
@@ -70,16 +69,6 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
 
     for (const event of ['reporting', 'response', 'reportingConfiguration']) {
       tuyaCluster.on(event, payload => {
-        const data = Buffer.isBuffer(payload.data) ? payload.data : null;
-        this.log(`Raw Tuya DP ${event}:`, {
-          ...payload,
-          ...(data ? { data: data.toString('hex') } : {}),
-          ...(data ? {
-            dataHex: `0x${data.toString('hex')}`,
-            dataBytes: Array.from(data),
-          } : {}),
-        });
-
         if (payload.dp === HUMAN_PRESENCE_DP) {
           this.processHumanPresenceDatapoint(payload).catch(error => {
             this.error('Failed to process human presence datapoint', error);
@@ -94,16 +83,12 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     }
 
     if (typeof tuyaCluster.dataQuery === 'function') {
-      this.log('Requesting Tuya device state (dataQuery 0x03)');
       tuyaCluster.dataQuery({})
-        .catch(error => this.log('Tuya dataQuery skipped/failed:', error.message));
-    } else {
-      this.log('Tuya dataQuery is unavailable; cannot request device state');
+        .catch(error => this.error('Failed to request Tuya device state', error));
     }
 
     endpoint.clusters[CLUSTER.IAS_ZONE.NAME]
       .onZoneStatusChangeNotification = ({ zoneStatus }) => {
-        this.log('Motion status:', zoneStatus.alarm1);
         this.setCapabilityValue('alarm_motion', zoneStatus.alarm1).catch(this.error);
       };
 
@@ -122,7 +107,7 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
         this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining);
       }
     } catch (error) {
-      this.log('Unable to read initial battery percentage; waiting for the next report:', error.message);
+      this.error('Unable to read initial battery percentage; waiting for the next report', error);
     }
 
     if (this.isFirstInit()) {
@@ -147,7 +132,7 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
 
       for (const configuration of reportingConfigurations) {
         await this.configureAttributeReporting([configuration])
-          .catch(error => this.log('Optional attribute reporting configuration failed:', error.message));
+          .catch(error => this.error('Optional attribute reporting configuration failed', error));
       }
     }
   }
@@ -156,7 +141,6 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     const presence = parseHumanPresenceState(getDataValue(data));
     const previousPresence = this.getCapabilityValue('presence_state');
 
-    this.log('Human presence state:', presence);
     await this.setCapabilityValue('presence_state', presence);
 
     if (previousPresence === undefined || previousPresence === null || previousPresence === presence) return;
@@ -173,7 +157,6 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     const motionState = parseHumanMotionState(getDataValue(data));
     const previousMotionState = this.getCapabilityValue('human_motion_state');
     const insightValue = toHumanMotionStateInsightValue(motionState);
-    this.log('Human motion state:', motionState);
     await this.setCapabilityValue('human_motion_state', motionState);
 
     if (this.getCapabilityValue('human_motion_level') !== insightValue) {
@@ -191,7 +174,6 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     const batteryLevel = Math.max(0, Math.min(100, batteryPercentageRemaining / 2));
     const batteryThreshold = this.getSetting('batteryThreshold') || 20;
 
-    this.log('Battery level (%):', batteryLevel);
     this.setCapabilityValue('measure_battery', batteryLevel).catch(this.error);
     this.setCapabilityValue('alarm_battery', batteryLevel < batteryThreshold).catch(this.error);
   }
@@ -204,74 +186,39 @@ class MotionRadarSensor extends TuyaSpecificClusterDevice {
     }
 
     const roundedLux = Math.round(lux * 100) / 100;
-    this.log('Illuminance (lux):', roundedLux);
     this.setCapabilityValue('measure_luminance', roundedLux).catch(this.error);
   }
 
   async onSettings({ newSettings, changedKeys }) {
     if (changedKeys.includes('motion_detection_mode')) {
       const value = toMotionDetectionModeEnum(newSettings.motion_detection_mode);
-      this.log('Sending Tuya DP:', {
-        dp: MOTION_DETECTION_MODE_DP,
-        datatype: 4,
-        value,
-      });
       await this.writeEnum(MOTION_DETECTION_MODE_DP, value);
     }
 
     if (changedKeys.includes('motion_detection_sen')) {
       const value = validateMotionDetectionSensitivity(newSettings.motion_detection_sen);
-      this.log('Sending Tuya DP:', {
-        dp: MOTION_DETECTION_SENSITIVITY_DP,
-        datatype: 2,
-        value,
-      });
       await this.writeData32(MOTION_DETECTION_SENSITIVITY_DP, value);
     }
 
     if (changedKeys.includes('sensitivity')) {
       const value = validateStationaryDetectionSensitivity(newSettings.sensitivity);
-      this.log('Sending Tuya DP:', {
-        dp: STATIONARY_DETECTION_SENSITIVITY_DP,
-        datatype: 2,
-        value,
-      });
       await this.writeData32(STATIONARY_DETECTION_SENSITIVITY_DP, value);
     }
 
     if (changedKeys.includes('far_detection')) {
       const value = validateFarDetection(newSettings.far_detection);
-      this.log('Sending Tuya DP:', {
-        dp: FAR_DETECTION_DP,
-        datatype: 2,
-        value,
-      });
       await this.writeData32(FAR_DETECTION_DP, value);
     }
 
     if (changedKeys.includes('presence_time')) {
       const value = validatePresenceTime(newSettings.presence_time);
-      this.log('Sending Tuya DP:', {
-        dp: PRESENCE_TIME_DP,
-        datatype: 2,
-        value,
-      });
       await this.writeData32(PRESENCE_TIME_DP, value);
     }
 
     if (changedKeys.includes('indicator')) {
       const value = validateIndicator(newSettings.indicator);
-      this.log('Sending Tuya DP:', {
-        dp: INDICATOR_DP,
-        datatype: 1,
-        value,
-      });
       await this.writeBool(INDICATOR_DP, value);
     }
-  }
-
-  onDeleted() {
-    this.log('Motion & Presence Sensor removed');
   }
 
 }
