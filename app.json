@@ -14886,7 +14886,8 @@
       },
       "zigbee": {
         "manufacturerName": [
-          "_TZ3000_9akmi5ly"
+          "_TZ3000_9akmi5ly",
+          "_TZ3000_wijoqjk1"
         ],
         "productId": [
           "TS0001"
@@ -15029,8 +15030,7 @@
           "TUYATEC-nzrrvgco",
           "_TZ3000_qn8qvk9y",
           "_TZ3000_s8r1qoyq",
-          "_TZ3000_xftvfolu",
-          "_TZ3000_l9brjwau"
+          "_TZ3000_xftvfolu"
         ],
         "productId": [
           "TS0002",
@@ -15108,6 +15108,93 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "wall_switch_2_gang_touch",
+      "name": {
+        "en": "2 Gang Touch Wall Switch"
+      },
+      "class": "socket",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "large": "/drivers/wall_switch_2_gang_touch/assets/images/large.png",
+        "small": "/drivers/wall_switch_2_gang_touch/assets/images/small.png"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 0,
+          "usageOff": 0
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_l9brjwau",
+          "_TZ3000_kwvyssee"
+        ],
+        "productId": [
+          "TS0002"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          },
+          "2": {
+            "clusters": [
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          }
+        },
+        "devices": {
+          "secondSwitch": {
+            "class": "socket",
+            "capabilities": [
+              "onoff"
+            ],
+            "name": {
+              "en": "2 Gang Touch Wall Switch"
+            },
+            "energy": {
+              "approximation": {
+                "usageOn": 0,
+                "usageOff": 0
+              }
+            }
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/wall_switch_2_gang_touch/assets/icon.svg",
+          "instruction": {
+            "en": "A tile for each button will be created. Remove the front and press the setup button for 10 seconds (the LED should start blinking)."
+          }
+        }
+      },
+      "settings": [
+        {
+          "id": "switch_backlight",
+          "type": "checkbox",
+          "label": {
+            "en": "Switch backlight"
+          },
+          "value": false
         }
       ]
     },
