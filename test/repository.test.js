@@ -923,6 +923,16 @@ test('curtain motor handles both Tuya position reports and the current Homey cap
   assert.match(source, /\.on\('reporting', handlePositionReport\)/);
 });
 
+test('wall roller shutter uses the reported DP2 percentage directly', () => {
+  const source = fs.readFileSync(
+    path.join(root, 'drivers', 'wall_roller_shutter_switch', 'device.js'),
+    'utf8'
+  );
+
+  assert.match(source, /this\.setCapabilityValue\('windowcoverings_set', value \/ 100\)/);
+  assert.doesNotMatch(source, /100\s*-\s*value/);
+});
+
 test('Tuya report listeners do not fire async handlers without an error boundary', () => {
   const unsafe = [];
 

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "accurate_calibration",
+    "type": "checkbox",
+    "label": {
+      "en": "Accurate calibration",
+      "nl": "Nauwkeurige kalibratie"
+    },
+    "hint": {
+      "en": "Activate to start calibration, then deactivate to finish it.",
+      "nl": "Activeer om de kalibratie te starten en deactiveer om deze te voltooien."
+    },
+    "value": false
+  },
+  {
+    "id": "quick_calibration_time",
+    "type": "number",
+    "label": {
+      "en": "Quick calibration",
+      "nl": "Snelle kalibratie"
+    },
+    "hint": {
+      "en": "Set the shutter travel time in seconds. This is sent to the device as its quick calibration value.",
+      "nl": "Stel de looptijd van het rolluik in seconden in. Deze waarde wordt als snelle kalibratie naar het apparaat gestuurd."
+    },
+    "min": 1,
+    "max": 120,
+    "step": 1,
+    "units": {
+      "en": "Seconds",
+      "nl": "Seconden"
+    }
+  },
+  {
+    "id": "switch_backlight",
+    "type": "checkbox",
+    "label": {
+      "en": "Switch backlight",
+      "nl": "Schakelaar-achtergrondverlichting"
+    },
+    "hint": {
+      "en": "Turn the switch backlight on or off.",
+      "nl": "Schakel de achtergrondverlichting van de schakelaar in of uit."
+    },
+    "value": true
+  },
+  {
+    "id": "motor_steering",
+    "type": "radio",
+    "label": {
+      "en": "Motor steering",
+      "nl": "Motorrichting"
+    },
+    "value": "forward",
+    "values": [
+      {
+        "id": "forward",
+        "label": {
+          "en": "Forward",
+          "nl": "Vooruit"
+        }
+      },
+      {
+        "id": "back",
+        "label": {
+          "en": "Back",
+          "nl": "Achteruit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "light_mode",
+    "type": "radio",
+    "label": {
+      "en": "Indicator status",
+      "nl": "Indicatorstatus"
+    },
+    "value": "relay",
+    "values": [
+      {
+        "id": "relay",
+        "label": {
+          "en": "On/Off status",
+          "nl": "Aan/uit-status"
+        }
+      },
+      {
+        "id": "pos",
+        "label": {
+          "en": "Switch position",
+          "nl": "Schakelaarpositie"
+        }
+      },
+      {
+        "id": "none",
+        "label": {
+          "en": "Off",
+          "nl": "Uit"
+        }
+      }
+    ]
+  },
+  {
+    "id": "max_open_percentage",
+    "type": "number",
+    "label": {
+      "en": "Maximum open percentage",
+      "nl": "Maximale open percentage"
+    },
+    "hint": {
+      "en": "The maximum percentage the shutter can open.",
+      "nl": "Het maximale percentage dat het rolluik kan openen."
+    },
+    "value": 100,
+    "min": 0,
+    "max": 100
+  }
+]

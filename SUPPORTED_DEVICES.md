@@ -143,6 +143,7 @@ This section is generated from the Homey manifest. It is the easiest place to ch
 | Valve Controller (`valvecontroller`) | `TS0001`<br>`TS0111`<br>`TS011F` | `_TYZB01_4tlksk8a`<br>`_TYZB01_ymcdbl3u`<br>`_TZ3000_5ucujjts`<br>`_TZ3000_iedbgyxt`<br>`_TZ3000_j9568h44`<br>`_TZ3000_o4cjetlm`<br>`_TZ3000_tvuarksa`<br>`_TZ3000_w0ypwa1f`<br>`_TZ3000_wpueorev` |
 | Wall Dimmer (`wall_dimmer_tuya`) | `TS0601` | `_TZE200_0nauxa0p`<br>`_TZE200_3p5ydos3`<br>`_TZE200_9cxuhakf`<br>`_TZE200_9i9dt8is`<br>`_TZE200_a0syesf5`<br>`_TZE200_ctq0k47x`<br>`_TZE200_dfxkcots`<br>`_TZE200_ebwgzdqq`<br>`_TZE200_ojzhk75b`<br>`_TZE200_p0gzbqct`<br>`_TZE200_swaamsoy`<br>`_TZE200_w4cryh2i`<br>`_TZE200_whpb9yts`<br>`_TZE204_vevc4c6g` |
 | Wall mounted Curtain Switch (`wall_curtain_switch`) | `TS130F` | `_TZ3000_8kzqqzu4`<br>`_TZ3000_ctbafvhm`<br>`_TZ3000_dbpmpco1`<br>`_TZ3000_dph3rpss`<br>`_TZ3000_fvhunhxb`<br>`_TZ3000_ltiqubue`<br>`_TZ3000_qa8s8vca`<br>`_TZ3000_qqdbccb3`<br>`_TZ3000_wptayaqr` |
+| Wall Roller Shutter Switch (`wall_roller_shutter_switch`) | `TS0601` | `_TZE284_uqfph8ah` |
 | Wall Socket with metering (`wall_socket`) | `TS011F` | `_TZ3000_4ux0ondb`<br>`_TZ3000_5ct6e7ye`<br>`_TZ3000_b28wrpvx`<br>`_TZ3000_y4ona9me` |
 | Wall Switch (1/4 Gang) (`wall_switch_4_gang`) | `TS0014`<br>`TS0044` | `_TYZB01_bagt1e4o`<br>`_TZ3000_dku2cfsc`<br>`_TZ3000_fjt5218m`<br>`_TZ3000_r0pmi2p3` |
 | Wall Thermostat (`wall_thermostat`) | `TS0601` | `_TZE200_2ekuz3dz`<br>`_TZE200_aoclfnxz`<br>`_TZE204_aoclfnxz` |

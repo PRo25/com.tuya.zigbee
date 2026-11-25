@@ -1,0 +1,22 @@
+{
+  "actions": [
+    {
+      "id": "wall_roller_shutter_open",
+      "title": {
+        "en": "Open"
+      }
+    },
+    {
+      "id": "wall_roller_shutter_close",
+      "title": {
+        "en": "Close"
+      }
+    },
+    {
+      "id": "wall_roller_shutter_stop",
+      "title": {
+        "en": "Stop"
+      }
+    }
+  ]
+}
